@@ -1,0 +1,5 @@
+- proxies:
+    - name: "中国本地转发"
+      type: http
+      server: localhost
+      port: 3000
