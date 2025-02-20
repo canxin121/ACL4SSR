@@ -41,5 +41,3 @@ dns:
     - 8.8.8.8
     - 1.0.0.1
 
-rules:
-  - "PROCESS-NAME,http_proxy,DIRECT"
