@@ -1,43 +1,62 @@
-redir-port: 9797
-tproxy-port: 9898
-mode: rule
+mixed-port: 7890
+ipv6: false
 allow-lan: true
-bind-address: "*"
-log-level: silent
-ipv6: true
-external-controller: 0.0.0.0:9090
-secret: "114514"
-external-ui: /data/adb/box/clash/dashboard
+unified-delay: false
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: /data/adb/box/clash/dashboard
+
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
 
 profile:
   store-selected: true
-  store-fake-ip: false
+  store-fake-ip: true
 
 tun:
   exclude-package: []
-  enable: false
-  device: utun
-  mtu: 9000
-  stack: system
+  enable: true
+  stack: mixed
   dns-hijack:
-    - any:53
-    - tcp://any:53
+    - "any:53"
+    - "tcp://any:53"
   auto-route: true
+  auto-redirect: true
   auto-detect-interface: true
 
 dns:
   enable: true
-  ipv6: true
-  default-nameserver:
-    - 8.8.8.8
-    - 1.1.1.1
   listen: 0.0.0.0:1053
-  use-hosts: true
+  ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - "*.lan"
-  nameserver:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  default-nameserver:
+    - 114.114.114.114
+    - 223.5.5.5
     - 8.8.8.8
-    - 1.0.0.1
+  nameserver:
+    - 114.114.114.114
+    - 223.5.5.5
+    - 8.8.8.8
+tproxy-port: 9898
+redir-port: 9797
 
+hosts:
+  
+# '*.mihomo.dev': 127.0.0.1
+# '.dev': 127.0.0.1
+# 'router.lan': 192.168.153.66
+# test.com: [1.1.1.1, 2.2.2.2]
+# home.lan: lan
