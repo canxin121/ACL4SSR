@@ -1,5 +1,0 @@
-proxies:
-  - name: "[本地]钉钉直连"
-    type: http
-    server: localhost
-    port: 3000
